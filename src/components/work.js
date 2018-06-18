@@ -1,4 +1,4 @@
-import {Icon, List, ListItem} from 'semantic-ui-react';
+import {Grid, Icon} from 'semantic-ui-react';
 import React from 'react';
 
 import ReactMarkdown from 'react-markdown';
@@ -10,6 +10,7 @@ import {workType} from '../data/person';
 import {ExtLink} from "./extlink";
 import {CardHighlights} from "./cardhighlights";
 import {ButtonHighlights} from "./buttonhighlights";
+import {WorkBulletPoint} from "./workbulletpoint";
 
 const Work = ({work}) => {
   return (
@@ -18,61 +19,51 @@ const Work = ({work}) => {
 
         <CardHighlights
 
-          color={colors.green}
           key={shortid.generate()}
+          color={colors.green}
 
           title={
-            <span style={c(emTwo, bold, faded(colors.green))}>
-                            <Icon name="building outline" margin="10"/>
-              {job.website
-                ? <ExtLink
-                  href={job.website}
-                  text={job.company}
-                  color={colors.green}
-                />
-                : job.company}
-                        </span>
+            <span style={c(emTwo, bold, color(colors.green))}>
+              <Icon name="user outline"/>
+              {job.position}
+            </span>
           }
 
           subtitle={
             <span style={c(emOneHalf, color(colors.grey))}>
-                            <Icon name="user outline"/>{job.position}
-              <Icon name="calendar" style={{marginLeft: '50px'}}/>
-              {`( ${job.startDate} - ${job.endDate} )`}
-                        </span>
+              <Grid columns="equal">
+                <Grid.Column textAlign="left">
+                  <Icon name="building outline"/>
+                  {job.website
+                    ? <ExtLink
+                      href={job.website}
+                      text={job.company}
+                      color={colors.grey}
+                    />
+                    : job.company}
+                </Grid.Column>
+                <Grid.Column textAlign="center">
+                  <Icon name="calendar"/>
+                  {`${job.startDate} - ${job.endDate} `}
+                </Grid.Column>
+                <Grid.Column textAlign="right">
+                </Grid.Column>
+              </Grid>
+            </span>
           }
 
           text={
             <span style={c(emOneTwo, faded(colors.black))}>
-                            <ReactMarkdown source={job.summary}/>
-                        </span>
+              <ReactMarkdown source={job.summary}/>
+            </span>
           }
 
-          points={
-            <List animated>
-              <ListItem>
-                {/*
-                Strong OO design and analysis skills. Direct the programming of junior
-                developers, conducting code reviews and ensuring a high standard of code. Lead
-                design/development tasks. problem solving skills/analytics. API design and implementation
-              </ListItem>
-              <ListItem>
-                Regular engagement with major stakeholders in in support of first phase
-                product design and sprint planning. Deliver software solutions consistent with
-                the product road map and release plan milestones.
-              </ListItem>
-              <ListItem>
-                Adept in Continuous Integration (CI), acceptance testing, integration
-                testing and unit testing, passion for benchmarking/metrics. performance tuning bottleneck.
-                Automated test and build process with Jenkins.
-              </ListItem>
-              <ListItem>
-                AWS-like environment, networks, linux. lots of open source. activeMQ.
-                Spring boot. popular java libraries. Java 8. Java based,full stack, good knowledge of stack,
-                maven. bamboo. JIRA
-                */}
-              </ListItem>
-            </List>}
+          bullets={
+            <WorkBulletPoint
+              icon="check"
+              bullets={job.bullets}
+              color="red"/>
+          }
 
           highlights={
             <ButtonHighlights

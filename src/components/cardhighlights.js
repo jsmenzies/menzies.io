@@ -9,7 +9,7 @@ export const CardHighlights = ({
                                  subtitle,
                                  text,
                                  highlights,
-                                 points
+                                 bullets
                                }) => {
   return (
     <div
@@ -25,7 +25,7 @@ export const CardHighlights = ({
         {subtitle}
       </Segment>}
       {text && <Segment vertical>{text}</Segment>}
-      {points && <Segment vertical>{points}</Segment>}
+      {bullets && <Segment vertical>{bullets}</Segment>}
 
       {highlights && <Segment vertical>{highlights}</Segment>}
     </div>
@@ -36,6 +36,7 @@ CardHighlights.defaultProps = {
   title: undefined,
   subtitle: undefined,
   text: undefined,
+  bullets: undefined,
   highlights: undefined,
 };
 
@@ -44,5 +45,6 @@ CardHighlights.propTypes = {
   title: PropTypes.element,
   subtitle: PropTypes.element,
   text: PropTypes.element,
+  bullets: PropTypes.element,
   highlights: PropTypes.element,
 };

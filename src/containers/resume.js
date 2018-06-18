@@ -8,6 +8,9 @@ import Basics from './basics';
 
 import picture from '../images/picture.jpg';
 import Work from "../components/work";
+import Education from "../components/education";
+import Publications from "../components/publications";
+import References from "../components/references";
 
 const ResumeMenuItem = ({
                           title,
@@ -99,7 +102,10 @@ export default class Resume extends React.Component {
   render() {
     const content = {
       avatar: <Basics {...this.basicsWithSkills} />,
-      work: <Work work={this.r.work}/>
+      work: <Work work={this.r.work}/>,
+      education: <Education education={this.r.education}/>,
+      publications: <Publications publications={this.r.publications}/>,
+      references: <References references={this.r.references}/>
     };
 
     const MenuItems = [
@@ -122,6 +128,24 @@ export default class Resume extends React.Component {
         show: !this.empty(this.r.work),
         onClick: this.handleMenuClick,
         active: this.state.activePage === 'Work',
+      },
+      {
+        title: 'Education',
+        show: !this.empty(this.r.education),
+        onClick: this.handleMenuClick,
+        active: this.state.activePage === 'Education',
+      },
+      {
+        title: 'Publications',
+        show: !this.empty(this.r.publications),
+        onClick: this.handleMenuClick,
+        active: this.state.activePage === 'Publications',
+      },
+      {
+        title: 'References',
+        show: !this.empty(this.r.references),
+        onClick: this.handleMenuClick,
+        active: this.state.activePage === 'References',
       }
     ];
 
