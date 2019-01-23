@@ -8,7 +8,7 @@ export const WorkBulletPoint = ({icon, bullets}) => {
       <List bulleted>
       {bullets.map(bp => (
         <ListItem>
-          <strong>{bp}</strong>
+          {bp}
         </ListItem>
       ))}
       </List>
